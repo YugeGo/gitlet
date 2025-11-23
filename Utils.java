@@ -41,10 +41,7 @@ class Utils {
             for (Object val : vals) {
                 if (val instanceof byte[]) {
                     md.update((byte[]) val);
-                } else if(val == null){
-                    // 如果是 null，我们可以选择跳过它，或者像下面这样，把它当作一个空字符串来处理
-                    md.update("".getBytes(StandardCharsets.UTF_8));
-                }else if (val instanceof String) {
+                } else if (val instanceof String) {
                     md.update(((String) val).getBytes(StandardCharsets.UTF_8));
                 } else {
                     throw new IllegalArgumentException("improper type to sha1");

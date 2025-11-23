@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.Date; // TODO: You'll likely use this in this class
 import java.util.TreeMap;
 
-
 /** Represents a gitlet commit object.
  *  TODO: It's a good idea to give a description here of what else this Class
  *  does at a high level.
@@ -23,13 +22,13 @@ public class Commit implements Serializable {
      */
 
     /** The message of this Commit. */
-    private final String message;
-    private final Date timeStamp;
-    private final TreeMap<String, String> blobs;
-    private final String parent;
-    private final String secondParent;
+    private String message;
+    private Date timeStamp;
+    private String parent;
+    private String secondParent;
+    private TreeMap<String, String> blobs;
 
-    public Commit(String message, Date timeStamp, TreeMap<String, String> blobs, String parent, String secondParent) {
+    public Commit(String message, Date timeStamp, TreeMap<String, String> blobs, String parent, String secondParent){
         this.message = message;
         this.timeStamp = timeStamp;
         this.blobs = blobs;
@@ -37,16 +36,15 @@ public class Commit implements Serializable {
         this.secondParent = secondParent;
     }
 
+    /* TODO: fill in the rest of this class. */
+    // --- Getters ---
+
     public String getMessage() {
         return message;
     }
 
     public Date getTimeStamp() {
         return timeStamp;
-    }
-
-    public TreeMap<String, String> getBlobs() {
-        return blobs;
     }
 
     public String getParent() {
@@ -57,5 +55,15 @@ public class Commit implements Serializable {
         return secondParent;
     }
 
-    /* TODO: fill in the rest of this class. */
+    public TreeMap<String, String> getBlobs() {
+        return blobs;
+    }
+
+    /**
+     * 辅助方法：快速获取某个文件的 Blob Hash
+     * 如果文件不存在，返回 null
+     */
+    public String getFileBlobId(String fileName) {
+        return blobs.get(fileName);
+    }
 }
